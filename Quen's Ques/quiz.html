@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quen's Quest - Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #0e0e10;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Neon Styled Container */
+        .quiz-container {
+            width: 90%;
+            max-width: 600px;
+            background: #1a1a2e;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #21d4fd, 0 0 30px #b721ff;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Logo Styling */
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            background-color: #0e0e10;
+            border: 4px solid #21d4fd;
+            box-shadow: 0 0 10px #21d4fd, 0 0 20px #b721ff;
+            overflow: hidden;
+        }
+
+        /* Decorative Border */
+        .futuristic-border {
+            border: 2px solid #0ff;
+            padding: 5px;
+            margin: 20px;
+        }
+
+        /* Header Styles */
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #21d4fd;
+            text-shadow: 0 0 10px #21d4fd;
+        }
+
+        /* Input Section for Age */
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Age Input Styling */
+        #age-input {
+            padding: 15px;
+            width: 120px;
+            font-size: 1.2em;
+            border: 3px solid #21d4fd;
+            background-color: #222;
+            color: #fff;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 0 8px #21d4fd, 0 0 15px #b721ff;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #age-input:focus {
+            outline: none;
+            box-shadow: 0 0 12px #21d4fd, 0 0 25px #b721ff;
+        }
+
+        /* Start Quiz Button Styling */
+        .start-quiz-btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #ff4081;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #ff4081, 0 0 20px #b721ff;
+            transition: background-color 0.3s, box-shadow 0.3s ease;
+        }
+
+        .start-quiz-btn:hover {
+            background-color: #ff79b0;
+            box-shadow: 0 0 15px #ff4081, 0 0 25px #b721ff;
+        }
+
+        /* Quiz Question Section */
+        .question-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .question-text {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        /* Answer Buttons */
+        .answer-btn {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 1em;
+            background-color: #0e76a8;
+            color: #fff;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .answer-btn:hover {
+            background-color: #007bb5;
+        }
+
+        /* Title Styling */
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5em;
+            color: #21d4fd;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #21d4fd, 0 0 20px #b721ff, 0 0 30px #21d4fd;
+            letter-spacing: 2px;
+        }
+
+        /* Home Button Styling */
+        .home-btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #ff4081;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 10px #ff4081, 0 0 20px #b721ff;
+            transition: background-color 0.3s, box-shadow 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #ff79b0;
+            box-shadow: 0 0 15px #ff4081, 0 0 25px #b721ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <!-- Logo and Decorative Area -->
+        <img src="ogo.png" alt="Quen's Quest Logo" class="logo">
+        <div class="futuristic-border">
+            <h1 class="title">Quen's Quest</h1>
+        </div>
+
+        <!-- Age Input Section -->
+        <div class="input-section" id="age-section">
+            <p>Enter your age to start the quiz:</p>
+            <input type="number" id="age-input" min="8" max="16" placeholder="Enter age">
+            <button class="start-quiz-btn" onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <!-- Quiz Question Section -->
+        <div class="question-section" id="quiz-section">
+            <p class="question-text" id="question"></p>
+            <button class="answer-btn" onclick="submitAnswer(0)">Option 1</button>
+            <button class="answer-btn" onclick="submitAnswer(1)">Option 2</button>
+            <button class="answer-btn" onclick="submitAnswer(2)">Option 3</button>
+            <button class="answer-btn" onclick="submitAnswer(3)">Option 4</button>
+        </div>
+    </div>
+
+    <script>
+        // Questions Database
+        const questions = {
+            "8-10": [
+                { question: "What is a child's right?", options: ["Right to Play", "Right to Work", "Right to Fly", "Right to Own a Car"], answer: 0 },
+                { question: "Children have the right to...", options: ["Protection", "Drive Cars", "Own a Home", "Travel Alone"], answer: 0 },
+                { question: "What is a child's right related to education?", options: ["Right to Study", "Right to Skip School", "Right to Teach", "Right to Own a School"], answer: 0 },
+                { question: "Who protects children's rights?", options: ["Parents", "Government", "Both", "No one"], answer: 2 },
+                { question: "All children have the right to...", options: ["Food", "Water", "Shelter", "All of the above"], answer: 3 },
+                { question: "Right to play is important for...", options: ["Development", "Exercise", "Happiness", "All above"], answer: 3 },
+                { question: "Education helps children...", options: ["Learn", "Grow", "Succeed", "All above"], answer: 3 },
+                { question: "All children should feel...", options: ["Safe", "Scared", "Ignored", "Unwanted"], answer: 0 },
+                { question: "Children have a right to express...", options: ["Ideas", "Feelings", "Dreams", "All above"], answer: 3 },
+                { question: "Who should respect children's rights?", options: ["Adults", "Government", "Family", "All above"], answer: 3 }
+            ],
+            "11-13": [
+                { question: "What is the right to education?", options: ["Attend School", "Buy Education", "Ignore School", "Teach Others"], answer: 0 },
+                { question: "Children have the right to...", options: ["Protection from harm", "Own businesses", "Drive vehicles", "Vote"], answer: 0 },
+                { question: "Who should respect children's rights?", options: ["Everyone", "Only Teachers", "Only Parents", "Only Friends"], answer: 0 },
+                { question: "Right to freedom means...", options: ["Express ideas", "Travel anywhere", "Drive cars", "Ignore rules"], answer: 0 },
+                { question: "What is the right to play?", options: ["Time for fun", "Skipping school", "Working early", "Ignoring responsibilities"], answer: 0 },
+                { question: "Protection from harm ensures...", options: ["Safety", "Scared", "Anger", "Isolation"], answer: 0 },
+                { question: "Right to express ideas is...", options: ["Important", "Useless", "Only for adults", "For teachers only"], answer: 0 },
+                { question: "Right to health includes...", options: ["Safe water", "Exercise", "Healthy food", "All above"], answer: 3 },
+                { question: "Children’s rights mean they...", options: ["Are protected", "Have limits", "Are ignored", "None of these"], answer: 0 },
+                { question: "Children have the right to...", options: ["Live safely", "Take risks", "Ignore school", "None of these"], answer: 0 }
+            ],
+            "14-16": [
+                { question: "Children's rights are...", options: ["Universal", "Optional", "Specific to regions", "For some children"], answer: 0 },
+                { question: "Right to education ensures...", options: ["Equality", "Choice", "Fairness", "Access for all"], answer: 3 },
+                { question: "What is the right to protection?", options: ["Safety from harm", "Freedom to work", "Right to play", "Right to vote"], answer: 0 },
+                { question: "The right to be heard means...", options: ["Express views", "Always be agreed with", "Speak for others", "Stay quiet"], answer: 0 },
+                { question: "Right to health includes access to...", options: ["Healthcare", "Games", "Entertainment", "Expensive items"], answer: 0 },
+                { question: "What is the right to survival?", options: ["Basic needs met", "Enjoy life", "Exercise", "None"], answer: 0 },
+                { question: "Which of these promotes equality?", options: ["Right to Education", "Right to Health", "Right to Express", "All above"], answer: 3 },
+                { question: "Protection from exploitation means...", options: ["Safety", "Work rights", "Equal treatment", "Freedom"], answer: 0 },
+                { question: "Right to play supports...", options: ["Mental growth", "Physical health", "Social skills", "All above"], answer: 3 },
+                { question: "Child rights mean access to...", options: ["Education", "Healthcare", "Protection", "All above"], answer: 3 }
+            ]
+        };
+
+        let ageGroup = '';
+        let questionIndex = 0;
+        let score = 0;
+
+        function startQuiz() {
+            const age = document.getElementById('age-input').value;
+            if (age >= 8 && age <= 10) ageGroup = '8-10';
+            else if (age >= 11 && age <= 13) ageGroup = '11-13';
+            else if (age >= 14 && age <= 16) ageGroup = '14-16';
+            else {
+                alert("Please enter a valid age between 8 and 16.");
+                return;
+            }
+
+            document.getElementById('age-section').style.display = 'none';
+            document.getElementById('quiz-section').style.display = 'block';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = questions[ageGroup][questionIndex];
+            document.getElementById('question').innerText = question.question;
+            document.querySelectorAll('.answer-btn').forEach((btn, index) => {
+                btn.innerText = question.options[index];
+            });
+        }
+
+        function submitAnswer(selected) {
+            const question = questions[ageGroup][questionIndex];
+            if (selected === question.answer) score += 10;
+            questionIndex++;
+
+            if (questionIndex < questions[ageGroup].length) {
+                loadQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        function endQuiz() {
+            document.getElementById('quiz-section').innerHTML = `
+                <h2>Your Score: ${score}/100</h2>
+                <p>Well done!</p>
+                <button class="home-btn" onclick="goHome()">Home</button>
+            `;
+        }
+
+        function goHome() {
+            window.location.href = "index.html"; // Replace with actual homepage link
+        }
+    </script>
+</body>
+</html>
+
+

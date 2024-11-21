@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level 1 - Scenario Quiz</title>
+  <link rel="stylesheet" href="level1.css">
+</head>
+<body>
+  <header>
+    <div class="logo-title">
+      <div class="logo">
+        <img src="ogo.png" alt="Your Logo">
+      </div>
+      <div class="title">
+        <h1>QUEN'S QUEST</h1>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="scenario-quiz.html"><i class="fas fa-question-circle"></i> Scenario Quiz</a></li>
+        <li><a href="comic-main.html"><i class="fas fa-book"></i> Comics</a></li>
+        <li><a href="law.html"><i class="fas fa-gavel"></i> Laws</a></li>
+        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+        <li><a href="login.html"><i class="fas fa-user"></i> Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="level-container">
+      <h2>Level 1: Watch the Video</h2>
+      <div class="video-container">
+        <video id="scenarioVideo" width="70%" controls>
+          <source src="v1-s1-q.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <button id="startQuizButton" onclick="startQuiz()" class="hidden">Start Quiz</button>
+    </div>
+
+    <div id="quizSection" class="hidden">
+      <h3 id="questionText"></h3>
+      <div id="options"></div>
+      <p id="points">Points: 0</p>
+    </div>
+
+    <div id="levelCompleteSection" class="hidden">
+      <p>Level Complete!</p>
+      <button onclick="goToNextLevel()">Next Level</button>
+    </div>
+
+    <div id="resultSection" class="hidden">
+      <p>Your total points: <span id="totalPoints"></span></p>
+      <button onclick="goToHomePage()">Go to Home</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>Explore | Learn | Challenge | Conquer</p>
+  </footer>
+
+  <script src="level1.js"></script>
+</body>
+</html>
+
+
+
+
+
+

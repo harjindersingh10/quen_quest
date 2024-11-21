@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quen's Quest - Futuristic Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo-title">
+            <div class="logo">
+                <img src="ogo.png" alt="Your Logo">
+            </div>
+            <div class="title">
+                <h1>QUEN'S QUEST</h1>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quiz.html"><i class="fas fa-question-circle"></i> Quiz</a></li>
+                <li><a href="comic-main.html"><i class="fas fa-book"></i> Comics</a></li>
+                <li><a href="law.html"><i class="fas fa-gavel"></i> Laws</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="login.html"><i class="fas fa-user"></i> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content">
+            <div class="text">
+                <h1>Step into the Future</h1>
+                <p>Embark on a journey of discovery and adventure!</p>
+                <p>Where learning meets excitement in a futuristic world.</p>
+                <button onclick="location.href='scenario-quiz.html'">Start Game</button>
+            </div>
+            <div class="image">
+                <img src="ogo.png" alt="Your Image">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Explore | Learn | Challenge | Conquer</p>
+    </footer>
+
+    <!-- Chatbot Icon and Chat Window -->
+    <div class="chatbot-container">
+        <div class="chat-icon" onclick="toggleChat()">
+            <img src="chatbot-img.png" alt="Chatbot Icon">
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Chat with Us</h3>
+                <span class="chatbot-label">Chatbot</span> <!-- Added label for chatbot -->
+                <button onclick="toggleChat()">X</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <p class="bot-message">Hello! How can I assist you today?</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type a message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function toggleChat() {
+            const chatWindow = document.getElementById("chatWindow");
+            chatWindow.style.display = chatWindow.style.display === "block" ? "none" : "block";
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value;
+            if (userInput.trim() === "") return;
+
+            // Display user message
+            const chatBody = document.getElementById("chatBody");
+            const userMessage = document.createElement("p");
+            userMessage.className = "user-message";
+            userMessage.textContent = userInput;
+            chatBody.appendChild(userMessage);
+
+            // Clear input field
+            document.getElementById("userInput").value = "";
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botMessage = document.createElement("p");
+                botMessage.className = "bot-message";
+                botMessage.textContent = "I'm here to help! Let me know your questions.";
+                chatBody.appendChild(botMessage);
+
+                // Scroll chat to the bottom
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
